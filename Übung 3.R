@@ -1,0 +1,11 @@
+install.packages(phangorn)
+library(phangorn)
+fdir <- system.file("extdata/trees", package = "phangorn")
+primates <- read.phyDat(file.path(fdir, "primates.dna"),
+                        format = "interleaved")
+data(primates)
+distanceMatrixPrimates  <- dist.ml(primates)
+treeUPGMA_Primates  <- upgma(distanceMatrixPrimates)
+treeNJ_Primates  <- NJ(distanceMatrixPrimates)
+plot(treeUPGMA_Primates, main="UPGMA")
+plot(treeNJ_Primates, "unrooted", main="NJ")
